@@ -1,10 +1,8 @@
 import 'dart:ui';
 
-import 'package:get/get.dart';
-
 class MyData {
   static const List<String> colorOptions = [
-    'Green', 'Blue', 'Red', 'Purple', 'Orange'
+    'Green', 'Blue', 'Red', 'Purple'
   ];
 
   static const String initialColor = 'Green';

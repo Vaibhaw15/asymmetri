@@ -98,8 +98,8 @@ class _ProgressBarsWidgetState extends State<ProgressBarsWidget>
                                 : Alignment.centerLeft,
                             child: Container(
                               decoration: BoxDecoration(
-                                color: MyFunctions.getColorFromString(
-                                    controller.selectedColor.value),
+                                gradient: MyFunctions.getGradientFromString(
+                                    controller.selectedColor.value, isReversed: isReversed),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                             ),
@@ -177,8 +177,8 @@ class _ProgressBarsWidgetState extends State<ProgressBarsWidget>
                                   : Alignment.centerLeft,
                               child: Container(
                                 decoration: BoxDecoration(
-                                  color: MyFunctions.getColorFromString(
-                                      controller.selectedColor.value),
+                                  gradient: MyFunctions.getGradientFromString(
+                                      controller.selectedColor.value, isReversed: isReversed),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                               ),

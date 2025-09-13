@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../data/my_data.dart';
 import '../functions/my_functions.dart';
@@ -20,10 +21,36 @@ class AppController extends GetxController {
   }
 
   void updateTotalItems(int newTotal) {
+    if (newTotal > 30) {
+      Get.snackbar(
+        'Error',
+        'Only 30 items allowed',
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: const Color(0xFFBA5050),
+        colorText: Colors.white,
+        duration: const Duration(seconds: 2),
+        margin: const EdgeInsets.all(10),
+        borderRadius: 10,
+      );
+      return;
+    }
     totalItems.value = newTotal;
   }
 
   void updateItemsInLine(int newItemsInLine) {
+    if (newItemsInLine > 15) {
+      Get.snackbar(
+        'Error',
+        'Only 15 items allowed',
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: const Color(0xFFBA5050),
+        colorText: Colors.white,
+        duration: const Duration(seconds: 2),
+        margin: const EdgeInsets.all(10),
+        borderRadius: 10,
+      );
+      return;
+    }
     itemsInLine.value = newItemsInLine;
   }
 
