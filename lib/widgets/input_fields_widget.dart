@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../controllers/app_controller.dart';
 import '../functions/my_functions.dart';
 
-class InputFieldsWidget extends StatefulWidget {
+class InputFieldsWidget extends StatelessWidget {
   final String hintText;
   final Function(int) onChanged;
   final int initialValue;
@@ -17,31 +17,14 @@ class InputFieldsWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<InputFieldsWidget> createState() => _InputFieldsWidgetState();
-}
-
-class _InputFieldsWidgetState extends State<InputFieldsWidget> {
-  late TextEditingController _controller;
-  final AppController controller = Get.find();
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = TextEditingController(
-        text: widget.initialValue > 0 ? widget.initialValue.toString() : ''
-    );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final AppController controller = Get.find();
+    final TextEditingController textController = TextEditingController(
+        text: initialValue > 0 ? initialValue.toString() : ''
+    );
+
     return Obx(() => TextFormField(
-      controller: _controller,
+      controller: textController,
       keyboardType: TextInputType.number,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       style: TextStyle(
@@ -50,7 +33,7 @@ class _InputFieldsWidgetState extends State<InputFieldsWidget> {
         fontWeight: FontWeight.w600,
       ),
       decoration: InputDecoration(
-        labelText: widget.hintText,
+        labelText: hintText,
         floatingLabelBehavior: FloatingLabelBehavior.auto,
         labelStyle: TextStyle(
           color:MyFunctions.getColorFromString(controller.selectedColor.value),
@@ -72,10 +55,10 @@ class _InputFieldsWidgetState extends State<InputFieldsWidget> {
         if (value.isNotEmpty) {
           int? newValue = int.tryParse(value);
           if (newValue != null && newValue >= 0) {
-            widget.onChanged(newValue);
+            onChanged(newValue);
           }
         } else {
-          widget.onChanged(0);
+          onChanged(0);
         }
       },
     ));
