@@ -8,20 +8,24 @@ class InputFieldsWidget extends StatelessWidget {
   final String hintText;
   final Function(int) onChanged;
   final int initialValue;
+  final TextEditingController textController;
 
   const InputFieldsWidget({
     Key? key,
     required this.hintText,
     required this.onChanged,
     required this.initialValue,
+    required this.textController,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final AppController controller = Get.find();
-    final TextEditingController textController = TextEditingController(
-        text: initialValue > 0 ? initialValue.toString() : ''
-    );
+
+
+    if (textController.text.isEmpty && initialValue > 0) {
+      textController.text = initialValue.toString();
+    }
 
     return Obx(() => TextFormField(
       controller: textController,
@@ -36,18 +40,25 @@ class InputFieldsWidget extends StatelessWidget {
         labelText: hintText,
         floatingLabelBehavior: FloatingLabelBehavior.auto,
         labelStyle: TextStyle(
-          color:MyFunctions.getColorFromString(controller.selectedColor.value),
+          color: MyFunctions.getColorFromString(controller.selectedColor.value),
           fontWeight: FontWeight.w500,
           fontSize: 14,
         ),
         isDense: true,
-        contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+        contentPadding:
+        const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
         enabledBorder: OutlineInputBorder(
-          borderSide:  BorderSide(color: MyFunctions.getColorFromString(controller.selectedColor.value), width: 2),
+          borderSide: BorderSide(
+            color: MyFunctions.getColorFromString(controller.selectedColor.value),
+            width: 2,
+          ),
           borderRadius: BorderRadius.circular(30),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide:  BorderSide(color: MyFunctions.getColorFromString(controller.selectedColor.value), width: 2),
+          borderSide: BorderSide(
+            color: MyFunctions.getColorFromString(controller.selectedColor.value),
+            width: 2,
+          ),
           borderRadius: BorderRadius.circular(30),
         ),
       ),
@@ -64,3 +75,4 @@ class InputFieldsWidget extends StatelessWidget {
     ));
   }
 }
+

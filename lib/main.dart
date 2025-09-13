@@ -29,7 +29,9 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+   HomePage({Key? key}) : super(key: key);
+  final TextEditingController totalItemsController = TextEditingController();
+  final TextEditingController itemsInLineController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +62,7 @@ class HomePage extends StatelessWidget {
                     child: InputFieldsWidget(
                       hintText: 'Total Items',
                       initialValue: Get.find<AppController>().totalItems.value,
+                      textController: totalItemsController,
                       onChanged: (value) => Get.find<AppController>().updateTotalItems(value),
                     ))),
                 const SizedBox(height: 12),
@@ -68,6 +71,7 @@ class HomePage extends StatelessWidget {
                     child: InputFieldsWidget(
                       hintText: 'Items in Line',
                       initialValue: Get.find<AppController>().itemsInLine.value,
+                      textController: itemsInLineController,
                       onChanged: (value) => Get.find<AppController>().updateItemsInLine(value),
                     ))),
                 const SizedBox(height: 12),
